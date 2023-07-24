@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUREAU</title>
+    <style>
+        html{
+            background-color: rgba(224, 230, 176, 0.773);
+        }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: rgb(245, 120, 66);
+        }
+
+        h3 {
+            color: rgb(0, 0, 0);
+        }
+
+        ul {
+            text-align: left;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        /* Media query pour les écrans de taille inférieure à 600px (téléphones) */
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 24px;
+            }
+
+            h3 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Le Bureau Est Occupé Par:</h1>
+    <h2 id="nameDisplay"></h2>
+    <h3 id="dateDisplay"></h3>
+    <ul>
+        <li>L'échange se fait à minuit.</li>
+        <li>Si l'occupant est en dehors, l'autre peut utiliser le bureau.</li>
+        <li>Après chaque utilisation, le bureau doit se nettoyer.</li>
+    </ul>
+
+    <script>
+        // Liste prédéfinie de noms
+        const names = ["Reda", "Mohamed Amine"];
+
+        // Date de départ spécifiée
+        const startDate = new Date("2023-07-24");
+
+        // Fonction pour calculer la différence en jours entre deux dates
+        function getDifferenceInDays(date1, date2) {
+            const diffInTime = date2.getTime() - date1.getTime();
+            return Math.floor(diffInTime / (1000 * 3600 * 24));
+        }
+
+        // Fonction pour afficher le nom correspondant à la différence en jours
+        function displayCurrentName() {
+            const currentDate = new Date();
+            const differenceInDays = getDifferenceInDays(startDate, currentDate);
+            const index = differenceInDays % names.length;
+            const currentName = names[index];
+
+            const nameDisplay = document.getElementById("nameDisplay");
+            nameDisplay.textContent = currentName;
+
+            const dateDisplay = document.getElementById("dateDisplay");
+            dateDisplay.textContent = currentDate.toLocaleDateString("fr-FR");
+        }
+
+        // Appeler la fonction pour afficher le nom correspondant lors du chargement de la page
+        displayCurrentName();
+    </script>
+
+</body>
+</html>
